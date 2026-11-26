@@ -1,4 +1,3 @@
-
 // YOUR MIND - LOCAL FRONTEND
 
 // MOODBOARD FRONTEND
@@ -29,88 +28,65 @@ if (!visitorId) {
 
 // Colour selection
 
-notes.forEach(note => {
-
+notes.forEach((note) => {
     note.setAttribute("aria-pressed", "false");
 
     note.addEventListener("click", () => {
-
         const color = note.dataset.color;
 
         if (!color) return;
 
         if (selectedColors.has(color)) {
-
             selectedColors.delete(color);
 
             note.classList.remove("selected");
 
             note.setAttribute("aria-pressed", "false");
-
         } else {
-
             selectedColors.add(color);
 
             note.classList.add("selected");
 
             note.setAttribute("aria-pressed", "true");
-
         }
 
         updateSelectionCount();
-
     });
-
 });
 
 // Update selection count
 
 function updateSelectionCount() {
-
     const count = selectedColors.size;
 
-    selectionCount.textContent =
-        `${count} ${count === 1 ? "selected" : "selected"}`;
-
+    selectionCount.textContent = `${count} ${count === 1 ? "selected" : "selected"}`;
 }
 
 // Character counter
 
 feelingText.addEventListener("input", () => {
-
-    charCount.textContent =
-        `${feelingText.value.length} / 2000`;
-
+    charCount.textContent = `${feelingText.value.length} / 2000`;
 });
 
 // Status messages
 
 function showStatus(message, isError = false) {
-
     statusMessage.textContent = message;
 
-    statusMessage.style.color =
-        isError ? "#b75b52" : "#66866a";
-
+    statusMessage.style.color = isError ? "#b75b52" : "#66866a";
 }
 
 // Save entry
 
 saveButton.addEventListener("click", async () => {
-
     const colors = Array.from(selectedColors);
 
     const text = feelingText.value.trim();
 
     if (colors.length === 0 && text.length === 0) {
-
-        showStatus(
-            "There's no need for labels here",
-            true
-        );
+        showStatus("There's no need for labels here", true);
 
         return;
-
     }
 
     saveButton.disabled = true;
@@ -119,30 +95,27 @@ saveButton.addEventListener("click", async () => {
 
     //EXPERIMENT
     async function saveData() {
-    try {
-        const response = await fetch('/api/save');
-        
-        // Ensure the response has content before parsing
-        const text = await response.text();
-        if (!text) {
-            console.warn("Received empty response from server.");
-            return;
+        try {
+            const response = await fetch("/api/save");
+
+            // Ensure the response has content before parsing
+            const text = await response.text();
+            if (!text) {
+                console.warn("Received empty response from server.");
+                return;
+            }
+
+            const data = JSON.parse(text);
+            // ... proceed with data
+        } catch (error) {
+            // This is where your current error is being logged
+            console.error("Save error:", error);
         }
-
-        const data = JSON.parse(text);
-        // ... proceed with data
-    } catch (error) {
-        // This is where your current error is being logged
-        console.error("Save error:", error);
     }
-}
-      //EXPERIMENT
-    
-    
+    //EXPERIMENT
+
     try {
-
         const response = await fetch(API_URL, {
-
             method: "POST",
 
             headers: {
@@ -150,51 +123,40 @@ saveButton.addEventListener("click", async () => {
             },
 
             body: JSON.stringify({
-
                 visitorId: visitorId,
 
                 colors: colors,
 
                 note: text
-
             })
-
         });
-        
+
         ///TEST
-const response = await fetch(url, options);
-        
+        const response = await fetch(url, options);
+
         ///TEST
         const result = await response.json();
         const text = await response.text();
-const data = text ? JSON.parse(text) : {}; 
-
-if (!response.ok) {
-    throw new Error(data.message || `Server error: ${response.status}`);
-}
+        const data = text ? JSON.parse(text) : {};
 
         if (!response.ok) {
-
-            throw new Error(
-                result.message || "Unable to save your thoughts."
-            );
-
+            throw new Error(data.message || `Server error: ${response.status}`);
         }
 
-        showStatus(
-            "Thank you for opening your heart."
-        );
+        if (!response.ok) {
+            throw new Error(result.message || "Unable to save your thoughts.");
+        }
+
+        showStatus("Thank you for opening your heart.");
 
         // Reset selections
 
         selectedColors.clear();
 
-        notes.forEach(note => {
-
+        notes.forEach((note) => {
             note.classList.remove("selected");
 
             note.setAttribute("aria-pressed", "false");
-
         });
 
         // Reset written reflection
@@ -208,59 +170,39 @@ if (!response.ok) {
         // Refresh history
 
         await loadHistory();
-
     } catch (error) {
-
         showStatus(error.message, true);
 
         console.error("Save error:", error);
-
     } finally {
-
         saveButton.disabled = false;
 
         saveButton.textContent = "Let's have a thought";
-
     }
-
 });
 
 // Load previous entries
 
 async function loadHistory() {
-
     if (!historyContainer) return;
 
-    historyContainer.textContent =
-        "Recalling memories...";
+    historyContainer.textContent = "Recalling memories...";
 
     try {
-
-        const response = await fetch(
-            `${API_URL}?visitorId=${encodeURIComponent(visitorId)}`
-        );
+        const response = await fetch(`${API_URL}?visitorId=${encodeURIComponent(visitorId)}`);
 
         const result = await response.json();
 
         if (!response.ok) {
-
-            throw new Error(
-                result.message || "Unable to retrieve memories."
-            );
-
+            throw new Error(result.message || "Unable to retrieve memories.");
         }
 
         renderHistory(result.entries || []);
-
     } catch (error) {
-
-        historyContainer.textContent =
-            "Unable to recall your memories.";
+        historyContainer.textContent = "Unable to recall your memories.";
 
         console.error("History error:", error);
-
     }
-
 }
 
 // Display previous entries
@@ -268,26 +210,21 @@ async function loadHistory() {
 // Display previous entries
 
 function renderHistory(entries) {
-
     historyContainer.replaceChildren();
 
     if (entries.length === 0) {
-
         const empty = document.createElement("p");
 
         empty.className = "empty-state";
 
-        empty.textContent =
-            "You have yet to open your heart, why not start now?";
+        empty.textContent = "You have yet to open your heart, why not start now?";
 
         historyContainer.appendChild(empty);
 
         return;
-
     }
 
-    entries.forEach(entry => {
-
+    entries.forEach((entry) => {
         const card = document.createElement("article");
 
         // MATCHES YOUR CSS: .prev-card
@@ -298,11 +235,10 @@ function renderHistory(entries) {
 
         date.className = "prev-date";
 
-        date.textContent = new Date(entry.createdAt)
-            .toLocaleString(undefined, {
-                dateStyle: "medium",
-                timeStyle: "short"
-            });
+        date.textContent = new Date(entry.createdAt).toLocaleString(undefined, {
+            dateStyle: "medium",
+            timeStyle: "short"
+        });
 
         card.appendChild(date);
 
@@ -312,8 +248,7 @@ function renderHistory(entries) {
         // MATCHES YOUR CSS: .prev-colors
         colorContainer.className = "prev-colors";
 
-        (entry.colors || []).forEach(color => {
-
+        (entry.colors || []).forEach((color) => {
             const colorNote = document.createElement("span");
 
             // MATCHES YOUR CSS: .prev-dot
@@ -322,7 +257,6 @@ function renderHistory(entries) {
             colorNote.style.backgroundColor = color;
 
             colorContainer.appendChild(colorNote);
-
         });
 
         // Only add colour container if colours exist
@@ -332,7 +266,6 @@ function renderHistory(entries) {
 
         // Display written reflection
         if (entry.note) {
-
             const text = document.createElement("p");
 
             // MATCHES YOUR CSS: .prev-thought
@@ -341,13 +274,10 @@ function renderHistory(entries) {
             text.textContent = entry.note;
 
             card.appendChild(text);
-
         }
 
         historyContainer.appendChild(card);
-
     });
-
 }
 
 // Refresh history
@@ -358,7 +288,6 @@ refreshButton.addEventListener("click", loadHistory);
 
 updateSelectionCount();
 
-charCount.textContent =
-    `${feelingText.value.length} / 2000`;
+charCount.textContent = `${feelingText.value.length} / 2000`;
 
 loadHistory();

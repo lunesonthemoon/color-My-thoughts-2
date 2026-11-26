@@ -1,0 +1,228 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Moodboard — A Little Check-In</title>
+
+        <link rel="stylesheet" href="style.css" />
+
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"
+        />
+    </head>
+
+    <body>
+        <header class="topbar">
+            <a href="#" class="logo">Color your Mind</a>
+            <span class="header-note">a little space for you</span>
+        </header>
+
+        <main class="container">
+
+            <!-- INTRODUCTION -->
+            <section class="intro">
+                <p class="topper">The day starts with you</p>
+
+                <h1>Color your thoughts</h1>
+
+                <p class="subtitle">How do you feel?</p>
+            </section>
+
+            <!-- COLOR SELECTION -->
+            <section class="selection-section">
+
+                <div class="section-heading">
+                    <h2>What does your heart say? What about your mind?</h2>
+
+                    <span id="selection-count">0 selected</span>
+                </div>
+
+                <p class="helper-text">
+                    Sometimes we surprise ourselves everyday...
+                </p>
+
+                <div class="notes-grid" id="notes-grid">
+
+                    <button
+                        type="button"
+                        style="background-color: #f75151;"
+                        class="note note-1"
+                        data-color="#f75151"
+                        aria-label="Select color one"
+                        aria-pressed="false">
+                    </button>
+
+                    <button
+                        type="button"
+                        style="background-color: #ffa154;"
+                        class="note note-2"
+                        data-color="#ffa154"
+                        aria-label="Select color two"
+                        aria-pressed="false">
+                    </button>
+
+                    <button
+                        type="button"
+                        style="background-color: #ffeb8b;"
+                        class="note note-3"
+                        data-color="#ffeb8b"
+                        aria-label="Select color three"
+                        aria-pressed="false">
+                    </button>
+
+                    <button
+                        type="button"
+                        style="background-color: #9adca0;"
+                        class="note note-4"
+                        data-color="#9adca0"
+                        aria-label="Select color four"
+                        aria-pressed="false">
+                    </button>
+
+                    <button
+                        type="button"
+                        style="background-color: #585eb2;"
+                        class="note note-5"
+                        data-color="#585eb2"
+                        aria-label="Select color five"
+                        aria-pressed="false">
+                    </button>
+
+                    <button
+                        type="button"
+                        style="background-color: #b072c7;"
+                        class="note note-6"
+                        data-color="#b072c7"
+                        aria-label="Select color six"
+                        aria-pressed="false">
+                    </button>
+
+                    <button
+                        type="button"
+                        style="background-color: #ffa2da;"
+                        class="note note-7"
+                        data-color="#ffa2da"
+                        aria-label="Select color seven"
+                        aria-pressed="false">
+                    </button>
+
+                    <button
+                        type="button"
+                        style="background-color: #4c4848;"
+                        class="note note-8"
+                        data-color="#4c4848"
+                        aria-label="Select color eight"
+                        aria-pressed="false">
+                    </button>
+
+                    <button
+                        type="button"
+                        style="background-color: #e6e6e6;"
+                        class="note note-9"
+                        data-color="#e6e6e6"
+                        aria-label="Select color nine"
+                        aria-pressed="false">
+                    </button>
+
+                </div>
+
+                <p class="selection-hint" id="selection-hint">
+                    There's no need for labels here
+                </p>
+
+            </section>
+
+            <!-- OPTIONAL WRITING SECTION -->
+            <section class="writing-section">
+
+                <div class="section-heading">
+                    <h2>In your 'write' mind</h2>
+
+                    <span class="optional">
+                        Write your thoughts away
+                    </span>
+                </div>
+
+                <textarea
+                    id="feeling-note"
+                    placeholder="Today feels like..."
+                    maxlength="2000">
+                </textarea>
+
+                <div class="text-footer">
+                    <span>Just for this moment.</span>
+
+                    <span id="character-count">0 / 2000</span>
+                </div>
+
+            </section>
+
+            <!-- SAVE SECTION -->
+            <section class="save-section">
+
+                <button
+                    type="button"
+                    id="save-button"
+                    class="save-button">
+
+                    Let's have a thought
+
+                </button>
+
+                <p
+                    id="status-message"
+                    role="status"
+                    aria-live="polite">
+
+                    Here comes a thought that might alarm you
+
+                </p>
+
+            </section>
+
+            <!-- PREVIOUS ENTRIES -->
+            <section class="prev-section">
+
+                <div class="section-heading prev-heading">
+
+                    <div>
+                        <p class="eyebrow">Rewind, and unwind</p>
+
+                        <h2>Recall those moments</h2>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="refresh-button"
+                        class="refresh-button">
+
+                        ↻ Refresh
+
+                    </button>
+
+                </div>
+
+                <div id="prev-list" class="prev-list">
+
+                    <p class="empty-state">
+                        Do you remember these little things?
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer>
+            <p>A little space to feel, reflect and grow.</p>
+        </footer>
+
+        <script src="script.js"></script>
+
+    </body>
+</html>

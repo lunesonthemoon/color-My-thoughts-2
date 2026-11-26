@@ -1,0 +1,433 @@
+
+/* GENERAL */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #e3d8d8;
+    color: #000000;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+}
+
+button, textarea {
+    font: inherit;
+}
+
+/* HEADER */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    border-bottom: 1px solid #eceae4;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #39392f;
+    letter-spacing: -1px;
+}
+
+
+
+.header-note {
+    font-size: 12px;
+    color: #929087;
+    letter-spacing: 1px;
+}
+
+/* MAIN CONTAINER */
+
+.container {
+    max-width: 850px;
+    width: 90%;
+    margin: 75px auto;
+}
+
+/* INTRODUCTION */
+
+.intro {
+    text-align: center;
+    margin-bottom: 65px;
+}
+
+.topper {
+    color: #b18d70;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.intro h1 {
+    font-size: clamp(36px, 6vw, 55px);
+    font-weight: 500;
+    letter-spacing: -2px;
+    margin-bottom: 15px;
+}
+
+.intro h1 span {
+    font-family: 'Patrick Hand', cursive;
+    color: #c68c72;
+    font-weight: 400;
+}
+
+.subtitle {
+    max-width: 440px;
+    margin: auto;
+    color: #88877e;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* SECTION HEADINGS */
+
+.selection-section,
+.writing-section {
+    margin-bottom: 60px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section-heading h2 {
+    font-size: 19px;
+    font-weight: 600;
+}
+
+#selection-count {
+    color: #a28c79;
+    font-size: 12px;
+}
+
+.helper-text {
+    font-size: 12px;
+    color: #99968e;
+    margin-top: 8px;
+}
+
+/* STICKY NOTES */
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    max-width: 570px;
+    margin: 35px auto 20px;
+    padding: 12px 15px;
+}
+
+.note {
+    aspect-ratio: 1 / 0.85;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 2px 5px 10px rgba(65, 55, 35, 0.10);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+      filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.0));
+}
+
+.note::before {
+    content: "";
+    position: absolute;
+    top: -5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 20px;
+    /*TAPE TAPE TAPE */
+    background: rgba(255,255,255,0.35);
+      /*TAPE TAPE TAPE */
+      filter: drop-shadow(4px 6px 8px rgba(0, 0, 0, 0.4));
+}
+
+.note:hover {
+    transform: translateY(-8px) rotate(0deg) !important;
+    box-shadow: 4px 12px 20px rgba(65, 55, 35, 0.15);
+     filter: drop-shadow(4px 6px 8px rgba(0, 0, 0, 0.4));
+}
+
+.note:focus-visible {
+    outline: 3px solid #756b5b;
+    outline-offset: 5px;
+}
+
+.note.selected {
+    transform: translateY(-9px) rotate(0deg) scale(1.04);
+    box-shadow: 0 0 0 3px #777064,
+                3px 10px 18px rgba(65, 55, 35, 0.15);
+}
+
+.note.selected::after {
+    content: "Open your heart";
+    position: absolute;
+    bottom: 10px;
+    right: 13px;
+    font-size:10px;
+    color: rgba(41, 41, 13, 0.7);
+}
+
+
+
+.note-1 {
+    background: #F5D66F;
+    transform: rotate(-3deg);
+}
+
+.note-2 {
+    background: #F29B91;
+    transform: rotate(2deg);
+}
+
+.note-3 {
+    background: #A9C8A0;
+    transform: rotate(-2deg);
+}
+
+.note-4 {
+    background: #B9B0DC;
+    transform: rotate(3deg);
+}
+
+.note-5 {
+    background: #F4B7D1;
+    transform: rotate(-2deg);
+}
+
+.note-6 {
+    background: #9CC9D9;
+    transform: rotate(2deg);
+}
+
+.note-7 {
+    background: #E8AD73;
+    transform: rotate(2deg);
+}
+
+.note-8 {
+    background: #B9B9B9;
+    transform: rotate(-3deg);
+}
+
+.note-9 {
+    background: #B4C5A1;
+    transform: rotate(3deg);
+}
+
+.selection-hint {
+    text-align: center;
+    color: #aaa398;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 17px;
+    margin-top: 25px;
+}
+
+/* WRITING AREA */
+
+.optional {
+    color: #b49b81;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    margin-top: 22px;
+    padding: 20px;
+    resize: vertical;
+    border: 1px solid #e8e4dc;
+    border-radius: 5px;
+    background: #fffefa;
+    color: #45433c;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 19px;
+    outline: none;
+    transition: border 0.2s;
+}
+
+textarea:focus {
+    border-color: #c9aa91;
+}
+
+textarea::placeholder {
+    color: #c2bcb1;
+}
+
+.text-footer {
+    display: flex;
+    justify-content: space-between;
+    color: #aaa398;
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+/* SAVE BUTTON YOU CAN EDIT THIS!!! */
+
+.save-section {
+    text-align: center;
+    margin-bottom: 90px;
+}
+
+.save-button {
+    background: #45463d;
+    color: white;
+    border: none;
+    padding: 17px 35px;
+    border-radius: 3px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.save-button:hover {
+    background: #747362;
+    transform: translateY(-2px);
+}
+
+.save-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.save-button span {
+    margin-left: 15px;
+}
+
+#status-message {
+    color: #a29b8d;
+    font-size: 11px;
+    margin-top: 15px;
+}
+
+/* PREVIOUS NOTES */
+
+.prev-section {
+    border-top: 1px solid #eae7df;
+    padding-top: 45px;
+}
+
+.prev-heading {
+    margin-bottom: 30px;
+}
+
+.refresh-button {
+    border: none;
+    background: transparent;
+    color: #a38b74;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.prev-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.empty-state {
+    color: #aaa398;
+    font-size: 13px;
+    padding: 20px 0;
+    grid-column: 1 / -1;
+}
+
+.prev-card {
+    background: #fffefa;
+    border: 1px solid #eeebe3;
+    padding: 20px;
+    box-shadow: 2px 4px 10px rgba(50, 40, 20, 0.04);
+}
+
+.prev-date {
+    font-size: 11px;
+    color: #a49a8b;
+    margin-bottom: 15px;
+}
+
+.prev-colors {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.prev-dot {
+    width: 23px;
+    height: 23px;
+    border-radius: 2px;
+    box-shadow: 1px 2px 4px #00000012;
+}
+
+.prev-thought {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 17px;
+    color: #6d685e;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.prev-empty-note {
+    font-size: 12px;
+    color: #aaa398;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid #eceae4;
+    color: #aaa398;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 16px;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        padding: 20px 6%;
+    }
+
+    .container {
+        margin: 50px auto;
+    }
+
+    .intro {
+        margin-bottom: 45px;
+    }
+
+    .notes-grid {
+        gap: 15px;
+        padding: 5px;
+    }
+
+    .note {
+        aspect-ratio: 1 / 1;
+    }
+
+    .prev-list {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 17px;
+    }
+
+}

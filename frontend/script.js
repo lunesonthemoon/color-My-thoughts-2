@@ -117,6 +117,28 @@ saveButton.addEventListener("click", async () => {
 
     saveButton.textContent = "Recalling...";
 
+    //EXPERIMENT
+    async function saveData() {
+    try {
+        const response = await fetch('/api/save');
+        
+        // Ensure the response has content before parsing
+        const text = await response.text();
+        if (!text) {
+            console.warn("Received empty response from server.");
+            return;
+        }
+
+        const data = JSON.parse(text);
+        // ... proceed with data
+    } catch (error) {
+        // This is where your current error is being logged
+        console.error("Save error:", error);
+    }
+}
+      //EXPERIMENT
+    
+    
     try {
 
         const response = await fetch(API_URL, {

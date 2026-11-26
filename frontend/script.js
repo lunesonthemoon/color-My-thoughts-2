@@ -160,8 +160,18 @@ saveButton.addEventListener("click", async () => {
             })
 
         });
-
+        
+        ///TEST
+const response = await fetch(url, options);
+        
+        ///TEST
         const result = await response.json();
+        const text = await response.text();
+const data = text ? JSON.parse(text) : {}; 
+
+if (!response.ok) {
+    throw new Error(data.message || `Server error: ${response.status}`);
+}
 
         if (!response.ok) {
 
